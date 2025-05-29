@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class Expenses extends StatefulWidget {
-  const Expenses({super.key});
+class ExpensesScreen extends StatefulWidget {
+  const ExpensesScreen({super.key});
 
   @override
-  State<Expenses> createState() {
-    return _ExpensesState();
+  State<ExpensesScreen> createState() {
+    return _ExpensesScreenState();
   }
 }
 
-class _ExpensesState extends State<Expenses> {
+class _ExpensesScreenState extends State<ExpensesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
