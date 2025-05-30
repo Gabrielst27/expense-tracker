@@ -1,3 +1,5 @@
+import 'package:expense_tracker/data/mockups/expenses_mockup.dart';
+import 'package:expense_tracker/widgets/expenses-list/expenses_list.dart';
 import 'package:flutter/material.dart';
 
 class ExpensesScreen extends StatefulWidget {
@@ -15,8 +17,8 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
     return Scaffold(
       body: Column(
         children: [
-          Text('GRAFICO'),
-          Text('LISTA DE DESPESAS'),
+          const Text('GRAFICO'),
+          Expanded(child: ExpensesList(expenses: registeredExpenses)),
         ],
       ),
     );

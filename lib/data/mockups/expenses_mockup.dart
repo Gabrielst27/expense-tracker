@@ -18,6 +18,6 @@ final List<Expense> registeredExpenses = [
     title: 'Barbeiro',
     amount: 30,
     date: DateTime(2025, 5, 5),
-    category: ECategory.workout,
+    category: ECategory.aesthetic,
   ),
 ];

@@ -1,4 +1,5 @@
 import 'package:expense_tracker/enums/category_enum.dart';
+import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 
 class Expense {
@@ -14,4 +15,8 @@ class Expense {
   final double amount;
   final DateTime date;
   final ECategory category;
+
+  String get formatedDate {
+    return DateFormat.yMMMd().format(date);
+  }
 }
