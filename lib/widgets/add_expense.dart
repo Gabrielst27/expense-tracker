@@ -1,3 +1,6 @@
+import 'package:expense_tracker/data/mockups/expenses_mockup.dart';
+import 'package:expense_tracker/enums/category_enum.dart';
+import 'package:expense_tracker/models/expense.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -14,6 +17,7 @@ class _AddExpenseState extends State<AddExpense> {
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
   DateTime? _selectedDate;
+  ECategory _selectedCategory = ECategory.leisure;
 
   @override
   void dispose() {
@@ -82,8 +86,27 @@ class _AddExpenseState extends State<AddExpense> {
           ),
           const SizedBox(height: 16),
           Row(
-            mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              DropdownButton(
+                value: _selectedCategory,
+                items: ECategory.values
+                    .map(
+                      (category) => DropdownMenuItem(
+                        value: category,
+                        child: Text(category.name.toUpperCase()),
+                      ),
+                    )
+                    .toList(),
+                onChanged: (value) {
+                  if (value == null) {
+                    return;
+                  }
+                  setState(() {
+                    _selectedCategory = value;
+                  });
+                },
+              ),
+              const Spacer(),
               TextButton(
                 onPressed: () {
                   Navigator.pop(context);
@@ -91,8 +114,35 @@ class _AddExpenseState extends State<AddExpense> {
                 style: ElevatedButton.styleFrom(),
                 child: const Text('Cancelar'),
               ),
-              TextButton(
-                onPressed: () {},
+              ElevatedButton(
+                onPressed: () {
+                  final amountNumberValue = double.tryParse(
+                    _amountController.text,
+                  );
+                  if (_titleController.text.trim().isEmpty ||
+                      amountNumberValue == null ||
+                      amountNumberValue <= 0 ||
+                      _selectedDate == null) {
+                    showDialog(
+                      context: context,
+                      builder: (ctx) => AlertDialog(
+                        title: const Text('Conteúdo inválido'),
+                        content: const Text(
+                          'Certifique-se de colocar os valores necessários para salvar a despesa',
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(ctx);
+                            },
+                            child: Text('Ok'),
+                          ),
+                        ],
+                      ),
+                    );
+                    return;
+                  }
+                },
                 child: const Text('Salvar'),
               ),
             ],
