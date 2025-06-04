@@ -12,7 +12,7 @@ class ExpenseItem extends StatelessWidget {
     return Card(
       margin: EdgeInsets.only(top: 16),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
         child: Column(
           children: [
             Row(
