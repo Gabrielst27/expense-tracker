@@ -1,11 +1,12 @@
-import 'package:expense_tracker/data/mockups/expenses_mockup.dart';
 import 'package:expense_tracker/enums/category_enum.dart';
 import 'package:expense_tracker/models/expense.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class AddExpense extends StatefulWidget {
-  const AddExpense({super.key});
+  const AddExpense({super.key, required this.onAddExpense});
+
+  final void Function(Expense expense) onAddExpense;
 
   @override
   State<AddExpense> createState() {
@@ -29,7 +30,7 @@ class _AddExpenseState extends State<AddExpense> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(16),
+      padding: EdgeInsets.fromLTRB(16, 24, 16, 16),
       child: Column(
         children: [
           TextField(
@@ -142,6 +143,15 @@ class _AddExpenseState extends State<AddExpense> {
                     );
                     return;
                   }
+                  widget.onAddExpense(
+                    Expense(
+                      title: _titleController.text,
+                      amount: amountNumberValue,
+                      date: _selectedDate!,
+                      category: _selectedCategory,
+                    ),
+                  );
+                  Navigator.pop(context);
                 },
                 child: const Text('Salvar'),
               ),

@@ -1,4 +1,5 @@
 import 'package:expense_tracker/data/mockups/expenses_mockup.dart';
+import 'package:expense_tracker/models/expense.dart';
 import 'package:expense_tracker/widgets/add_expense.dart';
 import 'package:expense_tracker/widgets/expenses-list/expenses_list.dart';
 import 'package:flutter/material.dart';
@@ -15,9 +16,16 @@ class ExpensesScreen extends StatefulWidget {
 class _ExpensesScreenState extends State<ExpensesScreen> {
   void _openAddExpenseOverlay() {
     showModalBottomSheet(
+      isScrollControlled: false,
       context: context,
-      builder: (ctx) => const AddExpense(),
+      builder: (ctx) => AddExpense(onAddExpense: _addExpense),
     );
+  }
+
+  void _addExpense(Expense expense) {
+    setState(() {
+      registeredExpenses.add(expense);
+    });
   }
 
   @override
