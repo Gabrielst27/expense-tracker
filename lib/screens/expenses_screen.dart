@@ -29,13 +29,38 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
   }
 
   void _removeExpense(Expense expense) {
+    final expenseIndex = registeredExpenses.indexOf(expense);
     setState(() {
       registeredExpenses.remove(expense);
     });
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: Duration(seconds: 3),
+        content: Text('Despesa deletada'),
+        action: SnackBarAction(
+          label: 'Desfazer',
+          onPressed: () {
+            setState(() {
+              registeredExpenses.insert(expenseIndex, expense);
+            });
+          },
+        ),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
+    Widget mainContent = Center(
+      child: Text('Sem despesas encontradas. Adicione despesas!'),
+    );
+    if (registeredExpenses.isNotEmpty) {
+      mainContent = ExpensesList(
+        expenses: registeredExpenses,
+        onRemoveExpense: _removeExpense,
+      );
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text('Lista de despesas'),
@@ -50,10 +75,7 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
         children: [
           const Text('GRAFICO'),
           Expanded(
-            child: ExpensesList(
-              expenses: registeredExpenses,
-              onRemoveExpense: _removeExpense,
-            ),
+            child: mainContent,
           ),
         ],
       ),
