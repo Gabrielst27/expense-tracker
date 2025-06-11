@@ -54,6 +54,7 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     Widget mainContent = Center(
       child: Text('Sem despesas encontradas. Adicione despesas!'),
     );
@@ -77,17 +78,37 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          Chart(expenses: registeredExpenses),
-          const SizedBox(height: 16),
-          totalizers,
-          const SizedBox(height: 16),
-          Expanded(
-            child: mainContent,
-          ),
-        ],
-      ),
+      body: screenWidth < 600
+          ? Column(
+              children: [
+                Chart(expenses: registeredExpenses),
+                const SizedBox(height: 16),
+                totalizers,
+                const SizedBox(height: 16),
+                Expanded(
+                  child: mainContent,
+                ),
+              ],
+            )
+          : Row(
+              children: [
+                Expanded(
+                  child: Chart(expenses: registeredExpenses),
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: Column(
+                    children: [
+                      totalizers,
+                      const SizedBox(height: 16),
+                      Expanded(
+                        child: mainContent,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
     );
   }
 }

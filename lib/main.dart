@@ -1,8 +1,13 @@
 import 'package:expense_tracker/color_scheme.dart';
 import 'package:expense_tracker/screens/expenses_screen.dart';
 import 'package:flutter/material.dart';
+// import 'package:flutter/services.dart';
 
 void main() {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // SystemChrome.setPreferredOrientations([
+  //   DeviceOrientation.portraitUp,
+  // ]).then((fn) {
   runApp(
     MaterialApp(
       darkTheme: ThemeData.dark().copyWith(
@@ -61,4 +66,5 @@ void main() {
       home: ExpensesScreen(),
     ),
   );
+  // });
 }
