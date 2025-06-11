@@ -22,15 +22,21 @@ class Chart extends StatelessWidget {
     ];
   }
 
+  double get totalExpense {
+    double totalExpense = 0;
+    for (final bucket in buckets) {
+      totalExpense += bucket.totalAmount;
+    }
+    return totalExpense;
+  }
+
   double get maxTotalExpense {
     double maxTotalExpense = 0;
-
     for (final bucket in buckets) {
       if (bucket.totalAmount > maxTotalExpense) {
         maxTotalExpense = bucket.totalAmount;
       }
     }
-
     return maxTotalExpense;
   }
 
@@ -63,7 +69,7 @@ class Chart extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                for (final bucket in buckets) // alternative to map()
+                for (final bucket in buckets)
                   ChartBar(
                     fill: bucket.totalAmount == 0
                         ? 0
@@ -91,6 +97,16 @@ class Chart extends StatelessWidget {
                   ),
                 )
                 .toList(),
+          ),
+          const SizedBox(height: 12),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Total: R\$ ${totalExpense.toStringAsFixed(2)}'),
+              ],
+            ),
           ),
         ],
       ),

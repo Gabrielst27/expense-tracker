@@ -16,6 +16,25 @@ void main() {
             foregroundColor: kDarkColorScheme.onPrimaryContainer,
           ),
         ),
+        textTheme: ThemeData().textTheme.copyWith(
+          titleLarge: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: kDarkColorScheme.secondary,
+            fontSize: 16,
+          ),
+          titleMedium: TextStyle(
+            color: kDarkColorScheme.secondary,
+            fontSize: 16,
+          ),
+          bodyMedium: TextStyle(
+            color: kDarkColorScheme.secondary,
+            fontSize: 16,
+          ),
+          bodyLarge: TextStyle(
+            color: kDarkColorScheme.secondary,
+            fontSize: 16,
+          ),
+        ),
       ),
       theme: ThemeData().copyWith(
         colorScheme: kColorScheme,

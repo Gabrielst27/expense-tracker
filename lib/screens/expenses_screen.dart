@@ -1,6 +1,7 @@
 import 'package:expense_tracker/data/mockups/expenses_mockup.dart';
 import 'package:expense_tracker/models/expense.dart';
 import 'package:expense_tracker/widgets/add_expense.dart';
+import 'package:expense_tracker/widgets/chart/chart.dart';
 import 'package:expense_tracker/widgets/expenses-list/expenses_list.dart';
 import 'package:flutter/material.dart';
 
@@ -73,7 +74,7 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
       ),
       body: Column(
         children: [
-          const Text('GRAFICO'),
+          Chart(expenses: registeredExpenses),
           Expanded(
             child: mainContent,
           ),
