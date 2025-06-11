@@ -5,6 +5,18 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(
     MaterialApp(
+      darkTheme: ThemeData.dark().copyWith(
+        colorScheme: kDarkColorScheme,
+        cardTheme: const CardThemeData().copyWith(
+          color: kDarkColorScheme.primaryContainer,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: kDarkColorScheme.primaryContainer,
+            foregroundColor: kDarkColorScheme.onPrimaryContainer,
+          ),
+        ),
+      ),
       theme: ThemeData().copyWith(
         colorScheme: kColorScheme,
         appBarTheme: const AppBarTheme().copyWith(
@@ -12,7 +24,7 @@ void main() {
           foregroundColor: kColorScheme.primaryContainer,
         ),
         cardTheme: CardThemeData().copyWith(
-          color: kColorScheme.secondaryContainer,
+          color: kColorScheme.primaryContainer,
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
