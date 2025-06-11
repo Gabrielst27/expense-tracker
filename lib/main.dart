@@ -8,7 +8,7 @@ void main() {
       darkTheme: ThemeData.dark().copyWith(
         colorScheme: kDarkColorScheme,
         cardTheme: const CardThemeData().copyWith(
-          color: kDarkColorScheme.primaryContainer,
+          color: kDarkColorScheme.secondaryContainer,
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
