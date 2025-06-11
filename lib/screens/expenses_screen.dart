@@ -3,6 +3,7 @@ import 'package:expense_tracker/models/expense.dart';
 import 'package:expense_tracker/widgets/add_expense.dart';
 import 'package:expense_tracker/widgets/chart/chart.dart';
 import 'package:expense_tracker/widgets/expenses-list/expenses_list.dart';
+import 'package:expense_tracker/widgets/totalizers.dart';
 import 'package:flutter/material.dart';
 
 class ExpensesScreen extends StatefulWidget {
@@ -56,10 +57,14 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
     Widget mainContent = Center(
       child: Text('Sem despesas encontradas. Adicione despesas!'),
     );
+    Widget totalizers = Center(child: Text(''));
     if (registeredExpenses.isNotEmpty) {
       mainContent = ExpensesList(
         expenses: registeredExpenses,
         onRemoveExpense: _removeExpense,
+      );
+      totalizers = Totalizer(
+        allExpenses: registeredExpenses,
       );
     }
     return Scaffold(
@@ -75,6 +80,9 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
       body: Column(
         children: [
           Chart(expenses: registeredExpenses),
+          const SizedBox(height: 16),
+          totalizers,
+          const SizedBox(height: 16),
           Expanded(
             child: mainContent,
           ),

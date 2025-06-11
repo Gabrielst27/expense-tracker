@@ -22,14 +22,6 @@ class Chart extends StatelessWidget {
     ];
   }
 
-  double get totalExpense {
-    double totalExpense = 0;
-    for (final bucket in buckets) {
-      totalExpense += bucket.totalAmount;
-    }
-    return totalExpense;
-  }
-
   double get maxTotalExpense {
     double maxTotalExpense = 0;
     for (final bucket in buckets) {
@@ -97,16 +89,6 @@ class Chart extends StatelessWidget {
                   ),
                 )
                 .toList(),
-          ),
-          const SizedBox(height: 12),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Total: R\$ ${totalExpense.toStringAsFixed(2)}'),
-              ],
-            ),
           ),
         ],
       ),
