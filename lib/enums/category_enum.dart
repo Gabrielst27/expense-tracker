@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-enum ECategory { foood, workout, travel, leisure, work, learning, aesthetic }
+enum ECategory { food, workout, travel, leisure, work, learning, aesthetic }
 
 const Map<ECategory, IconData> categoryIcons = {
-  ECategory.foood: Icons.lunch_dining,
+  ECategory.food: Icons.lunch_dining,
   ECategory.workout: Icons.fitness_center_rounded,
   ECategory.travel: Icons.flight_takeoff,
   ECategory.leisure: Icons.movie,
