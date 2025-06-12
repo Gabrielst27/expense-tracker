@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:expense_tracker/enums/category_enum.dart';
 import 'package:expense_tracker/models/expense.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -25,6 +28,46 @@ class _AddExpenseState extends State<AddExpense> {
     _titleController.dispose();
     _amountController.dispose();
     super.dispose();
+  }
+
+  void _showDialog() {
+    if (Platform.isIOS) {
+      showCupertinoDialog(
+        context: context,
+        builder: (ctx) => CupertinoAlertDialog(
+          title: const Text('Conteúdo inválido'),
+          content: const Text(
+            'Certifique-se de colocar os valores necessários para salvar a despesa',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(ctx);
+              },
+              child: Text('Ok'),
+            ),
+          ],
+        ),
+      );
+    } else {
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text('Conteúdo inválido'),
+          content: const Text(
+            'Certifique-se de colocar os valores necessários para salvar a despesa',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(ctx);
+              },
+              child: Text('Ok'),
+            ),
+          ],
+        ),
+      );
+    }
   }
 
   @override
@@ -215,23 +258,7 @@ class _AddExpenseState extends State<AddExpense> {
                               amountNumberValue == null ||
                               amountNumberValue <= 0 ||
                               _selectedDate == null) {
-                            showDialog(
-                              context: context,
-                              builder: (ctx) => AlertDialog(
-                                title: const Text('Conteúdo inválido'),
-                                content: const Text(
-                                  'Certifique-se de colocar os valores necessários para salvar a despesa',
-                                ),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.pop(ctx);
-                                    },
-                                    child: Text('Ok'),
-                                  ),
-                                ],
-                              ),
-                            );
+                            _showDialog();
                             return;
                           }
                           widget.onAddExpense(

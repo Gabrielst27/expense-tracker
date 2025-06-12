@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 void main() {
   // WidgetsFlutterBinding.ensureInitialized();
   // SystemChrome.setPreferredOrientations([
-  //   DeviceOrientation.portraitUp,
+  //   DeviceOrientation.portraitUp, // allows only the portraitUp orientation
   // ]).then((fn) {
   runApp(
     MaterialApp(
