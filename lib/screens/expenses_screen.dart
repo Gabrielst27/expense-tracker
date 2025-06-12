@@ -18,7 +18,8 @@ class ExpensesScreen extends StatefulWidget {
 class _ExpensesScreenState extends State<ExpensesScreen> {
   void _openAddExpenseOverlay() {
     showModalBottomSheet(
-      isScrollControlled: false,
+      useSafeArea: true,
+      isScrollControlled: true,
       context: context,
       builder: (ctx) => AddExpense(onAddExpense: _addExpense),
     );
